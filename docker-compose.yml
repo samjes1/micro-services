@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL (compartida)
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:-user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-pass}
+      POSTGRES_DB: ${DB_NAME:-main_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - microservices_network
+
+  # Servicio de mensajería NATS
+  nats:
+    image: nats:latest
+    container_name: nats
+    ports:
+      - "4222:4222"
+    networks:
+      - microservices_network
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME:}
+      NATS_URL: ${NATS_URL}
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - postgres
+      - nats
+    networks:
+      - microservices_network
+
+  # Microservicios (users y products)
+  users-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: users-service
+    environment:
+       DB_HOST: postgres
+       DB_PORT: 5432
+       DB_USER: ${DB_USER}
+       DB_PASSWORD: ${DB_PASSWORD}
+       DB_NAME: ${DB_NAME:}
+       NATS_URL: ${NATS_URL}
+       JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - postgres
+      - nats
+    networks:
+      - microservices_network
+
+  products-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: products-service
+    environment:
+       DB_HOST: postgres
+       DB_PORT: 5432
+       DB_USER: ${DB_USER}
+       DB_PASSWORD: ${DB_PASSWORD}
+       DB_NAME: ${DB_NAME:}
+       NATS_URL: ${NATS_URL}
+       JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - postgres
+      - nats
+    networks:
+      - microservices_network
+
+volumes:
+  postgres_data:
+
+networks:
+  microservices_network:
+    driver: bridge
