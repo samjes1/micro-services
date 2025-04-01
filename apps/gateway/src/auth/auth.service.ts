@@ -13,7 +13,7 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
-    @Inject('NATS_CLIENT') private readonly natsClient: ClientProxy, // Cliente NATS
+    @Inject('CREATE_USER') private readonly natsClient: ClientProxy, // Cliente NATS
   ) {}
 
   async register(registerUserDto: RegisterUserDto) {
@@ -37,6 +37,6 @@ export class AuthService {
 }
 
 async login(loginUserDto: LoginUserDto) {
-    // Valida credenciales 
+    // TODO: realizar logica de login  
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { ProductServicesService } from './product-services.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CreateProductDto } from './dtos/create-product.dto';

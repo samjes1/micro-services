@@ -8,5 +8,5 @@ export class CreateProductDto {
   price: number;
 
   @IsUUID()
-  userId: string; // TODO: Validar que sea un UUID válido
+  userId: string; 
 }

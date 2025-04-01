@@ -14,8 +14,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [User],
-      synchronize: true, // Solo para desarrollo
-    }), // llevar esto a docker 
+      synchronize: true, 
+    }),
     TypeOrmModule.forFeature([User]),
   ],
   controllers: [UserServicesController],

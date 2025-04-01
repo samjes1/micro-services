@@ -11,7 +11,7 @@ export class ProductServicesService {
   constructor(
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
-    @Inject('NATS_CLIENT') 
+    @Inject('FIND_USER_BY_ID') 
     private readonly natsClient: ClientProxy, 
   ){}
 

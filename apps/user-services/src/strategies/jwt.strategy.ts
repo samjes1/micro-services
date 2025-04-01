@@ -22,6 +22,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException('Token inválido o usuario no existe');
     }
-    return user; // El usuario se adjunta a la solicitud (req.user)
+    return user; 
   }
 }
