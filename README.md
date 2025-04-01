@@ -22,14 +22,14 @@ Aplicación basada en microservicios para gestionar usuarios y productos, utiliz
 
 ## 🛠️ Tecnologías Utilizadas
 
-||----------------------------------------------------------||
-|| Tecnología           || Uso                              ||
-||----------------------||----------------------------------||
-|| **NestJS**           || Framework principal              ||
-|| **NATS**             || Comunicación entre microservicios||
-|| **PostgreSQL**       || Almacenamiento de datos          ||
-|| **TypeORM**          || ORM para bases de datos          ||
-|| **Docker**           || Contenerización de servicios     ||
+
+| Tecnología           | Uso                              |
+|----------------------|----------------------------------|
+| **NestJS**           | Framework principal              |
+| **NATS**             | Comunicación entre microservicios|
+| **PostgreSQL**       | Almacenamiento de datos          |
+| **TypeORM**          | ORM para bases de datos          |
+| **Docker**           | Contenerización de servicios     |
 
 ---
 
@@ -45,7 +45,7 @@ Aplicación basada en microservicios para gestionar usuarios y productos, utiliz
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/tu-usuario/microservices-app.git  // moficiar con el repo ojo!!
+   git clone https://github.com/samjes1/micro-services.git  
    cd micro-services
 
 2. **Instalar Dependencias** 
